@@ -6,7 +6,8 @@ use app\interfaces\CartInterface;
 
 Class Cart implements CartInterface
 {
-    public function add($product){
+    public function add($product)
+    {
 
         if(!isset($_SESSION['cart'])){
             $_SESSION['cart'] = [];
@@ -20,16 +21,31 @@ Class Cart implements CartInterface
     
 
     }
-    public function remove($product){
+    public function remove($product)
+    {
+        if(isset($_SESSION['cart'][$product])){
+            unset($_SESSION['cart'][$product]);
+        }
+    }
+    public function quanty($product, $quantity)
+    {
+        if(isset($_SESSION['cart'][$product])){
+           if($quantity == 0 || $quantity == ''){
+                $this->remove($product);
+                return;
+           }
+           $_SESSION['cart'][$product] = $quantity;
+        }
 
     }
-    public function quanty($product, $quantity){
-
+    public function clear()
+    {
+        if(isset($_SESSION['cart'])){
+            unset($_SESSION['cart']);
+        }
     }
-    public function clear(){
-
-    }
-    public function cart(){
+    public function cart()
+    {
         if(isset($_SESSION['cart'])){
             return $_SESSION['cart'];
         }else{
