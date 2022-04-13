@@ -1,0 +1,15 @@
+{
+    "nane": "gustavo/cart",
+    "authors": [
+        {
+            "name": "Gustavo",
+            "email": "infogustavomelo@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "app\\":"app"
+        }
+    }
+}
